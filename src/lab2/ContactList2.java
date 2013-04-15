@@ -17,7 +17,7 @@ public class ContactList2 {
             = "Input line not found";
     private static final String IO_EXCEPTION
             = "Houston, we have a problem! reading this file";
-    private static final String 
+
     
     public Contact getContact() {
         return contact;
