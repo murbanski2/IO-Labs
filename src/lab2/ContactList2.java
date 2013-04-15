@@ -10,6 +10,14 @@ import java.io.IOException;
  */
 public class ContactList2 {
     private Contact contact;
+    private static final String BLANK_LINES = "\n\n";
+    private static final String INPUT_FIELDS_ERROR 
+            = "Input line did not have enough fields";
+    private static final String LINE_NOT_FOUND
+            = "Input line not found";
+    private static final String IO_EXCEPTION
+            = "Houston, we have a problem! reading this file";
+    private static final String 
     
     public Contact getContact() {
         return contact;
@@ -32,11 +40,21 @@ public class ContactList2 {
     public static void main(String[] args) {
         ContactList2 c = new ContactList2();
         c.getContacts(0, ContactFields.ALL);
-        System.out.println("\n\n\n");
+        System.out.println(BLANK_LINES);
         c.getContacts(2, ContactFields.CITY);
+        c.getContacts(4, ContactFields.ALL);
     
     }
     
+    /**
+     * getContacts(int lineNumber, ContactFields cf)
+     * @param lineNumber
+     * @param cf 
+     * lineNumber is the line you want, starting at 1 for the first line.
+     * lineNumber = 0 if you want all lines.
+     * ContactFields is from the enumeration ContactFields.  ALL for all, 
+     * otherwise select the field desired.
+     */
     public void getContacts(int lineNumber, ContactFields cf) {
         File data = new File(File.separatorChar + "temp" + File.separatorChar
                 + "data1.txt");
@@ -55,13 +73,16 @@ public class ContactList2 {
                     }
                 }
                 else{
-                    System.out.println("Input line did not have enough fields");
+                    System.out.println(INPUT_FIELDS_ERROR);
                 }
                 //outputRecord(str);
                 line = in.readLine();  // strips out any carriage return chars
             }
+            if (lineNumber > currentLine) {
+                System.out.println(LINE_NOT_FOUND);
+            }
         } catch (IOException ioe) {
-            System.out.println("Houston, we have a problem! reading this file");
+            System.out.println(IO_EXCEPTION);
         } finally {
             try {
                 in.close();
@@ -71,7 +92,7 @@ public class ContactList2 {
     }
     
     public String getFieldOutput(ContactFields cf) {
-        String result = "";
+        String result;
         switch (cf) {
             case ALL:
                 result = contact.toString(); 
