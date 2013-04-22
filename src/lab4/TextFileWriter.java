@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Mark Urbanski
  */
-class TextFileWriter {
+class TextFileWriter implements FileWriterStrategy {
     private String filePath;
     private List<String> stringsToSave;
     private boolean append;
@@ -26,6 +26,7 @@ class TextFileWriter {
     
     //FileWriter wrapped in a BufferedWriter wrapped in a PrintWriter
     //When append = false, overwrite
+    @Override
     public void writeFile() throws IOException {
         File data = null;
         PrintWriter out = null;
@@ -48,6 +49,36 @@ class TextFileWriter {
             }
         }
     }
+
+    @Override
+    public String getFilePath() {
+        return filePath;
+    }
+
+    @Override
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public List<String> getStringsToSave() {
+        return stringsToSave;
+    }
+
+    public void setStringsToSave(List<String> stringsToSave) {
+        this.stringsToSave = stringsToSave;
+    }
+
+    @Override
+    public boolean isAppend() {
+        return append;
+    }
+
+    @Override
+    public void setAppend(boolean append) {
+        this.append = append;
+    }
+    
+    
     
     //For testing only
     public static void main(String[] args) throws IOException{
@@ -62,4 +93,5 @@ class TextFileWriter {
         TextFileWriter writer2 = new TextFileWriter(fPath, outStrings, true);
         writer2.writeFile();
     }
+    
 }
