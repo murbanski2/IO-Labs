@@ -1,13 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package lab4;
 
 import java.io.IOException;
 
 /**
- *
+ * This interface is the contract for all File Writer Strategy implementations.
+ *  
  * @author Mark Urbanski
  */
 public interface FileWriterStrategy {
