@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Mark Urbanski
  */
-public class TextFileReader {
+public class TextFileReader implements FileReaderStrategy {
     private String filePath;
 
 
@@ -20,6 +20,7 @@ public class TextFileReader {
         this.filePath = filePath;
     }
     
+    @Override
     public List<String> readFile() throws IOException{
         List<String> stringsFromFile = new ArrayList<String>();
         BufferedReader inFile = null;
@@ -43,10 +44,12 @@ public class TextFileReader {
         return stringsFromFile;
     }
 
+    @Override
     public String getFilePath() {
         return filePath;
     }
 
+    @Override
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
@@ -54,7 +57,7 @@ public class TextFileReader {
     
     //Testing code only
     public static void main(String[] args) throws IOException {
-        TextFileReader reader = 
+        FileReaderStrategy reader = 
                 new TextFileReader("src" + File.separatorChar 
                 + "test_comma_only.csv");
         List<String> dataStrings = reader.readFile();

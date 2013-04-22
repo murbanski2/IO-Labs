@@ -59,6 +59,7 @@ class TextFileWriter {
         String fPath = "src/test.txt";
         TextFileWriter writer = new TextFileWriter(fPath, outStrings, false);
         writer.writeFile();
-        
+        TextFileWriter writer2 = new TextFileWriter(fPath, outStrings, true);
+        writer2.writeFile();
     }
 }

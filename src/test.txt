@@ -2,3 +2,7 @@ This is the first string
 This is the second string
 Would you believe this is the third string
 4
+This is the first string
+This is the second string
+Would you believe this is the third string
+4
