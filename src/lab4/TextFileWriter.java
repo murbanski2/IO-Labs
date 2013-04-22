@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ class TextFileWriter {
                   new BufferedWriter(
                   new FileWriter(data, append)) );
             for(String s : stringsToSave) {
-                out.println();
+                out.println(s);
             }
         }
         catch(IOException ioe) {
@@ -49,7 +50,15 @@ class TextFileWriter {
     }
     
     //For testing only
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
+        List<String> outStrings = new ArrayList<String>();
+        outStrings.add("This is the first string");
+        outStrings.add("This is the second string");
+        outStrings.add("Would you believe this is the third string");
+        outStrings.add("4");
+        String fPath = "src/test.txt";
+        TextFileWriter writer = new TextFileWriter(fPath, outStrings, false);
+        writer.writeFile();
         
     }
 }
